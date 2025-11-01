@@ -171,3 +171,9 @@ GTA:SA [MTA](https://multitheftauto.com) NaaB:RPG advanced game-mode (fa-IR).
 
 ## مشارکت
 - [Discord](https://discord.gg/2JjvhAk)
+
+
+
+
+SilentGalaxy Coments:
+https://www.linkedin.com/in/silentgalaxy/
