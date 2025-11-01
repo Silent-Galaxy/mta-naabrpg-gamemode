@@ -1,29 +1,18 @@
--- SQL Dump for a standard MTA:SA RPG Gamemode
--- version 1.0
--- https://your.dev.assistant
+-- =================================================================
+-- SQL Schema for GameGG MTA:SA RPG Gamemode
+-- Version: 1.0
+-- This script is robust and can be executed multiple times without error.
+-- =================================================================
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
+-- Step 1: Create the database `gamegg` if it does not already exist.
+CREATE DATABASE IF NOT EXISTS `gamegg` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
+-- Step 2: Select the `gamegg` database for the subsequent commands.
+USE `gamegg`;
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `gamegg`
---
-
--- --------------------------------------------------------
-
---
--- ساختار جدول `accounts`
--- جدول اصلی برای نگهداری اطلاعات بازیکنان
---
-
-CREATE TABLE `accounts` (
+-- Step 3: Create the `accounts` table if it does not already exist.
+-- This table stores all player account information.
+CREATE TABLE IF NOT EXISTS `accounts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
@@ -40,14 +29,9 @@ CREATE TABLE `accounts` (
   UNIQUE KEY `serial` (`serial`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
---
--- ساختار جدول `vehicles`
--- جدول برای نگهداری اطلاعات وسایل نقلیه بازیکنان
---
-
-CREATE TABLE `vehicles` (
+-- Step 4: Create the `vehicles` table if it does not already exist.
+-- This table stores all player-owned vehicles.
+CREATE TABLE IF NOT EXISTS `vehicles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `owner_id` int(11) NOT NULL,
   `model` int(4) NOT NULL,
@@ -63,14 +47,9 @@ CREATE TABLE `vehicles` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
---
--- ساختار جدول `bans`
--- جدول برای ثبت بازیکنان بن شده از سرور
---
-
-CREATE TABLE `bans` (
+-- Step 5: Create the `bans` table if it does not already exist.
+-- This table logs all banned players.
+CREATE TABLE IF NOT EXISTS `bans` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `serial` varchar(50) NOT NULL,
   `admin` varchar(50) NOT NULL,
@@ -78,9 +57,3 @@ CREATE TABLE `bans` (
   `ban_date` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
